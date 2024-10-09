@@ -32,16 +32,6 @@ const FooterNav = ({title,links , onClickLink})=>{
 function Footer({footerCategoriesData , footerNavData , onClickLink}) {
     return (
         <footer>
-        {/* <div className={classes["footer-category"]}>
-          <div className={classes["container"]}>
-            <h2 className={classes["footer-category-title"]}>Brand directory</h2>
-            <div className={classes["footer-category-box"]}>
-            {footerCategoriesData.map((item,index)=>{return(
-              <FooterCat key={index}  title={`${item.title}${" "}:`} links={item.links} />
-            )})}
-            </div>
-          </div>
-        </div> */}
         {/* {=============================================} */}
         <div className={classes["footer-nav"]}>
           <div className={classes["container"]}>
@@ -83,36 +73,6 @@ function Footer({footerCategoriesData , footerNavData , onClickLink}) {
               
           </div>
           {/* {=============================================} */}
-            {/* <ul className={`${classes["footer-nav-list"]} ${classes.container} `}>
-              <li className={classes["footer-nav-item"]}>
-                <h2 className={classes["nav-title"]}>Follow Us</h2>
-              </li>
-              <li>
-                <ul className={classes["social-link"]}>
-                  <li className={classes["footer-nav-item"]}>
-                    <Link to="/" className={classes["footer-nav-link"]}>
-                      <ion-icon name="logo-facebook"></ion-icon>
-                    </Link>
-                  </li>
-                  <li className={classes["footer-nav-item"]}>
-                    <Link to="/" className={classes["footer-nav-link"]}>
-                      <ion-icon name="logo-twitter"></ion-icon>
-                    </Link>
-                  </li>
-                  <li className={classes["footer-nav-item"]}>
-                    <Link to="/" className={classes["footer-nav-link"]}>
-                      <ion-icon name="logo-linkedin"></ion-icon>
-                    </Link>
-                  </li>
-                  <li className={classes["footer-nav-item"]}>
-                    <Link to="/" className={classes["footer-nav-link"]}>
-                      <ion-icon name="logo-instagram"></ion-icon>
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-            </ul> */}
-            {/* {=============================================} */}
           </div> 
         </div>
         {/* {=============================================} */}
@@ -123,9 +83,6 @@ function Footer({footerCategoriesData , footerNavData , onClickLink}) {
               Copyright &copy; <Link to="/">The Ai-Exchange</Link> all rights reserved.
             </p>
             <ul className={`${classes["footer-nav-list"]} ${classes.container} `}>
-              {/* <li className={classes["footer-nav-item"]}>
-                <h2 className={classes["nav-title"]}>Follow Us</h2>
-              </li> */}
               <li>
                 <ul className={classes["social-link"]}>
                   <li className={classes["footer-nav-item"]}>

@@ -2,7 +2,7 @@ import {useNavigate} from 'react-router-dom' ;
 import Modal from './layout/Modal'
 import classes from './Cart.module.scss' ;
 import {useSelector} from 'react-redux'; 
-import Card from '../components/Card'
+import Card from './Card'
 import {cartActions} from '../store/Cart-slice' ;
 import {useDispatch} from 'react-redux'; 
 

@@ -5,8 +5,8 @@ import classes from './NavBar.module.scss' ;
 import { FaCode } from "react-icons/fa";
 import { GrOrganization } from "react-icons/gr";
 import {useSelector} from 'react-redux'; 
-import Notifications from '../../components/Notifications/Notifications'
-import Conversation from '../../components/CoversationNew/Conversation'
+import Notifications from '../Notifications/Notifications'
+import Conversation from '../CoversationNew/Conversation'
 
 //-------------------------------------
 const SingleLink = ({title , to })=>{
