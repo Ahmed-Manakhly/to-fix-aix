@@ -443,8 +443,10 @@ body::-webkit-scrollbar-thumb:hover { background: hsl(0, 0%, 70%); }
     @include small_mobile {
       top: 69% !important;
     }
-    background: var(--main-2-blue) !important;
-    border: #fff 3px solid;
+    &{
+      background: var(--main-2-blue) !important;
+      border: #fff 3px solid;
+    }
     &:hover , &:active {
       background: var(--main-blue) !important;
     }
@@ -456,8 +458,10 @@ body::-webkit-scrollbar-thumb:hover { background: hsl(0, 0%, 70%); }
     @include small_mobile {
       top: 69% !important;
     }
-    background: var(--main-2-blue) !important;
-    border: #fff 3px solid;
+    &{
+      background: var(--main-2-blue) !important;
+      border: #fff 3px solid;
+    }
     &:hover , &:active {
       background-color: var(--main-blue) !important;
     }

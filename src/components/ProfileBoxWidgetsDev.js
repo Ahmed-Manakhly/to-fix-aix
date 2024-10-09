@@ -23,7 +23,7 @@ const {org_username , avatar , country , role , createdAt , first_name , org_nam
               </div>
               <div className={styles["widget_11_con"]}>
                 <div  className={` ${styles.imgCon} `} >
-                      {avatar &&<img src={origin+avatar} alt="Model Cover Image"  crossOrigin="anonymous"  />}
+                      {avatar &&<img src={origin+avatar} alt="Model Cover"  crossOrigin="anonymous"  />}
                       {!avatar &&  <div className={styles['UserHolder']} >{org_username?org_username[0]?.toUpperCase():''}</div>}
                 </div>
                 <div className={styles.infoCon}>

@@ -87,12 +87,14 @@
     width: 100% !important;
     padding: 0rem;
   }
-  display: flex ;
-  align-items: center ;
-  justify-content: center ;
-  flex-direction: column ;
-  gap: 2rem;
-  margin: 2rem;
+  &{
+    display: flex ;
+    align-items: center ;
+    justify-content: center ;
+    flex-direction: column ;
+    gap: 2rem;
+    margin: 2rem;
+  }
   .contact-col {
     @extend %rad15 ;
     @extend %tran ;
