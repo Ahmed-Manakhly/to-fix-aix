@@ -79,6 +79,13 @@
 }
 //========================================================
 .secpro{
+  box-shadow: 5px 5px 10px var(--cultured);
+  border: 2px solid var(--cultured);
+  display: flex ;
+  align-items: center ;
+  justify-content: center ;
+  @extend %rad15 ;
+  @extend %tran ;
   @include medium_mobile {
     width: 100% !important;
     padding: 0rem;
@@ -87,13 +94,6 @@
     width: 100% !important;
     padding: 0rem;
   }
-  box-shadow: 5px 5px 10px var(--cultured);
-  border: 2px solid var(--cultured);
-  display: flex ;
-  align-items: center ;
-  justify-content: center ;
-  @extend %rad15 ;
-  @extend %tran ;
   .contact-col {
     width: 100%;
     padding: 2rem  4rem;
