@@ -53,7 +53,7 @@ function OrderView({refresh}) {
                 navigate("/",{replace :true});
             }
         }
-    },[order])
+    },[order , dispatch, navigate])
     //==================================================
 
     useEffect(() => {
@@ -76,7 +76,7 @@ function OrderView({refresh}) {
         };
         getOrder(GET_ORDER_URL+'/'+id, headers ,toastHandler , loadingState , notificationState , gettingData,'Order!' )
         dispatch(uiActions.showNotification(false))
-    },[])
+    },[dispatch , id , token])
     //------------------------------------------
     useEffect(() => {
         if(updated){
@@ -100,7 +100,7 @@ function OrderView({refresh}) {
             dispatch(uiActions.showNotification(false))
             setUpdated(false)
         }
-    },[updated])
+    },[updated , dispatch ,id , token])
     //------------------------------------------
     useEffect(() => {
         if(order){
@@ -123,7 +123,7 @@ function OrderView({refresh}) {
             getOrder(REV_BY_ORDER_URL+'/'+id, headers ,toastHandler , loadingState , notificationState , gettingData,'Review!' )
             dispatch(uiActions.showNotification(false))
         }
-    },[order])
+    },[order , dispatch , id , token])
     //------------------------------------------
     useEffect(() => {
         if(order){
@@ -149,7 +149,7 @@ function OrderView({refresh}) {
                 setUpdated(false)
             }
         }
-    },[order , updated])
+    },[order , updated ,dispatch , id , token])
     //------------------------------------------
 
     const confirmOrdeerHandler =()=>{
@@ -165,7 +165,7 @@ function OrderView({refresh}) {
                 };
                 try{
                     const response = await axios.patch(CONFIRM_ORDER_URL+'/'+id, formdata ,{headers} );
-                    const resData =  response.data ;
+                    const resData =  response?.data ;
                     loadingState(false)
                     toast= {status :resData.status,message:"Order Confirmed successfully",title:'Confirm Order'}
                     toastHandler(toast);
@@ -176,11 +176,11 @@ function OrderView({refresh}) {
                         actionLink : `/order/view/${order?.id}`,
                     }
                     const { data } = await createNotification(notificationData);
-                    socket.emit("order_created", data.data.newNotification);
+                    socket.emit("order_created", data?.data?.newNotification);
                     navigate(`/order/view/${resData.order.id}`,{replace :true});
                 }catch(err){
                     loadingState(false)
-                    toast = {status :'error',message:err.response.data.message,title:'Confirm Order failed'};
+                    toast = {status :'error',message:err.response?.data?.message,title:'Confirm Order failed'};
                     toastHandler(toast);
                 }
         } 
@@ -195,40 +195,40 @@ function OrderView({refresh}) {
         dispatch(uiActions.showNotification(false))
     }
     //==================================================================================== soon
-    const deleteOrdeerHandler =()=>{
+    // const deleteOrdeerHandler =()=>{
 
-        async function onDeleteOrdeerHandler (toastHandler , loadingState ) {
-            let toast = {status :'', title :'', message:''}
-            loadingState(true)
-            //---------------------------------------------
-                const formdata = new FormData();
-                const headers = {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                };
-                try{
-                    const response = await axios.delete(GET_ORDER_URL+'/'+id, formdata ,{headers} );
-                    const resData =  response.data ;
-                    loadingState(false)
-                    toast= {status :resData.status,message:"Order Removed successfully",title:'Removed Order'}
-                    toastHandler(toast);
-                    gettingData(resData.data.order)
-                }catch(err){
-                    loadingState(false)
-                    toast = {status :'error',message:err.response.data.message,title:'Removed Order failed'};
-                    toastHandler(toast);
-                }
-        } 
-        const toastHandler =(toast)=>{
-            dispatch(uiActions.notificationDataChanged(toast))
-            dispatch(uiActions.showNotification(true))
-        } 
-        const loadingState = (state)=>{
-            dispatch(uiActions.showLoading(state))
-        }
-        onDeleteOrdeerHandler(toastHandler , loadingState )
-        dispatch(uiActions.showNotification(false))
-    }
+    //     async function onDeleteOrdeerHandler (toastHandler , loadingState ,gettingData ) {
+    //         let toast = {status :'', title :'', message:''}
+    //         loadingState(true)
+    //         //---------------------------------------------
+    //             const formdata = new FormData();
+    //             const headers = {
+    //                 'Content-Type': 'application/json',
+    //                 'Authorization': `Bearer ${token}`
+    //             };
+    //             try{
+    //                 const response = await axios.delete(GET_ORDER_URL+'/'+id, formdata ,{headers} );
+    //                 const resData =  response.data ;
+    //                 loadingState(false)
+    //                 toast= {status :resData.status,message:"Order Removed successfully",title:'Removed Order'}
+    //                 toastHandler(toast);
+    //                 gettingData(resData.data.order)
+    //             }catch(err){
+    //                 loadingState(false)
+    //                 toast = {status :'error',message:err.response.data.message,title:'Removed Order failed'};
+    //                 toastHandler(toast);
+    //             }
+    //     } 
+    //     const toastHandler =(toast)=>{
+    //         dispatch(uiActions.notificationDataChanged(toast))
+    //         dispatch(uiActions.showNotification(true))
+    //     } 
+    //     const loadingState = (state)=>{
+    //         dispatch(uiActions.showLoading(state))
+    //     }
+    //     onDeleteOrdeerHandler(toastHandler , loadingState )
+    //     dispatch(uiActions.showNotification(false))
+    // }
     const onSubmitFeedback =(feedback , rate)=>{
         if(order){
             async function onSubmitFeedbackHandler (toastHandler , loadingState ) {
@@ -246,7 +246,7 @@ function OrderView({refresh}) {
                     formdata.append('star' , rate)
                     try{
                         const response = await axios.post(REV_URL, formdata ,{headers} );
-                        const resData =  response.data ;
+                        const resData =  response?.data ;
                         loadingState(false)
                         toast= {status :resData.status,message:"review Submitted successfully",title:'Submit review'}
                         toastHandler(toast);
@@ -257,10 +257,10 @@ function OrderView({refresh}) {
                             actionLink : `/order/view/${order?.id}`,
                         }
                         const { data } = await createNotification(notificationData);
-                        socket.emit("order_created", data.data.newNotification);
+                        socket.emit("order_created", data?.data?.newNotification);
                     }catch(err){
                         loadingState(false)
-                        toast = {status :'error',message:err.response.data.message,title:'Submit review failed'};
+                        toast = {status :'error',message:err.response?.data?.message,title:'Submit review failed'};
                         toastHandler(toast);
                     }
             } 

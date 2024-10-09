@@ -1,5 +1,5 @@
 
-import {useRouteLoaderData , Link ,useParams}  from "react-router-dom";
+import {  Link ,useParams}  from "react-router-dom";
 import {useDispatch} from 'react-redux'; 
 import {uiActions} from '../store/UI-slice' ;
 import {getAuthToken} from '../utility/tokenLoader'
@@ -33,20 +33,14 @@ function ModelView({onlineUsers , refresh , modelRefresh}) {
     const thisUserRole = token? JSON.parse(localStorage.getItem('userData')).role : null
     const thisUserId = token? JSON.parse(localStorage.getItem('userData')).id : null
     const org_ipAddress = token? JSON.parse(localStorage.getItem('userData')).org_ipAddress : null
-    // const avatar = token? JSON.parse(localStorage.getItem('userData')).avatar : null
-    // const org_username = token? JSON.parse(localStorage.getItem('userData')).org_username : null
-    // const firstName  = token? JSON.parse(localStorage.getItem('userData')).first_name  : null
 
    
     useEffect(() => {
         if(!token ){
-            // let toast = {status :'error',message:'you have no access for this!',title:'Access Denied'};
-            // dispatch(uiActions.notificationDataChanged(toast))
-            // dispatch(uiActions.showNotification(true))
             navigate("/auth?mode=login",{replace :true});
             return ;
         }
-    },[token])
+    },[token ,navigate])
 
     const dispatch = useDispatch();  
     const [model,setModel] = useState({}) ;
@@ -111,7 +105,7 @@ function ModelView({onlineUsers , refresh , modelRefresh}) {
         }
         getModel(ALL_MODELS_URL+'/'+id, toastHandler , loadingState , notificationState , gettingData,'model!' )
         dispatch(uiActions.showNotification(false))
-    },[])
+    },[id , dispatch])
     //------------------------------------------
     useEffect(() => {
         if(singleModelUpdated){
@@ -132,7 +126,7 @@ function ModelView({onlineUsers , refresh , modelRefresh}) {
             dispatch(uiActions.showNotification(false))
             setSingleModelUpdated(false)
         }
-    },[singleModelUpdated])
+    },[singleModelUpdated , id , dispatch])
     //------------------------------------------
     useEffect(() => {
         
@@ -154,7 +148,7 @@ function ModelView({onlineUsers , refresh , modelRefresh}) {
         };
         getOrder(GET_ORDERS_BY_MODEL_URL+'/'+id, headers ,toastHandler , loadingState , notificationState , gettingData,'Orders!' )
         dispatch(uiActions.showNotification(false))
-    },[])
+    },[dispatch , id ,token ])
     //----------------------------------------------------
     useEffect(() => {
         
@@ -176,7 +170,7 @@ function ModelView({onlineUsers , refresh , modelRefresh}) {
         };
         getOrder(GET_REVIEWS_BY_MODEL_URL+'/'+id, headers ,toastHandler , loadingState , notificationState , gettingData,'Reviews!' )
         dispatch(uiActions.showNotification(false))
-    },[])
+    },[token , id ,dispatch ])
     //----------------------------------------------------
     useEffect(() => {
         if(updated){
@@ -201,7 +195,7 @@ function ModelView({onlineUsers , refresh , modelRefresh}) {
             setUpdated(false)
         }
         
-    },[])
+    },[dispatch , id , token , updated])
     //----------------------------------------------------
     useEffect(() => {
         
@@ -226,7 +220,7 @@ function ModelView({onlineUsers , refresh , modelRefresh}) {
             dispatch(uiActions.showNotification(false))
             setUpdated(false)
         }
-    },[updated])
+    },[updated , id ,dispatch ,token])
     //----------------------------------------------------
     useEffect(() => {
         if(modelUpdated){
@@ -246,7 +240,7 @@ function ModelView({onlineUsers , refresh , modelRefresh}) {
             dispatch(uiActions.showNotification(false))
             setModelUpdated(false)
         }
-    },[modelUpdated])
+    },[modelUpdated , dispatch , model?.userId ,])
     //---------------------------------------------------------------------
     const orderRequestHandler =()=>{
 

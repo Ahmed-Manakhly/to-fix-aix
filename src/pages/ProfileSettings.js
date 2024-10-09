@@ -1,27 +1,24 @@
-import { useSelector } from 'react-redux'; 
+/* eslint-disable */
 import BoxWidgets from '../components/BoxWidgets' ;
 import FormProfile from '../components/FormProfile' ;
 import Val from '../components/Val'
 import {vals} from '../data' ;
-import { useParams}  from "react-router-dom";
 import {UPDATE_USER_BY_ID_URL} from '../lib/api'
 import axios from 'axios'
 import {useDispatch} from 'react-redux'; 
 import {uiActions} from '../store/UI-slice' ;
-import {useEffect , useState} from 'react' ;
+import {  useState} from 'react' ;
 import {useNavigate } from 'react-router-dom';
 import {authActions} from '../store/Auth.-slice' ;
 
 
 function ProfileSettings() {
     const navigate = useNavigate();
-    // const { id } = useParams();
     const dispatch = useDispatch();  
     const [file,setFile] = useState() ;
     const [isChanged, setIsChanged] = useState(false);
     const user_Data =  JSON.parse(localStorage.getItem('userData'));
     const id =  JSON.parse(localStorage.getItem('userData')).id;
-    // const user_Data = useSelector(state => state.auth.userData) ;
     let avatar = null
     if (user_Data?.avatar){
         avatar = user_Data.avatar;

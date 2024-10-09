@@ -1,3 +1,4 @@
+/* eslint-disable */
 import classes from './FormProfile.module.scss' ;
 import { useNavigate , Form ,useNavigation  } from 'react-router-dom';
 import useInput from '../hooks/Use-Input';
@@ -223,7 +224,7 @@ const   FormProfile = ({onUpdateProfileAction  , isChanged}) => {
                                 <Col xs={0} md lg className={`${classes["form-control"]} d-flex flex-column align-items-left w-100`} >
                                     <label htmlFor='org_name'>Your Country</label>
                                     {(!org_phone || (org_phone &&isEditing.org_phone))&& <>
-                                        <input type='text' id='country' name="country" placeholder="Your country Name"  readonly="readonly" style={{border : 'none'}}
+                                        <input type='text' id='country' name="country" placeholder="Your country Name"  readOnly="readonly" style={{border : 'none'}}
                                     onChange={orgnameInputChangeHandler} onBlur={orgnameInputBlurHandler} value={country.name?country.name:''}/>
                                     </>}
                                     {(org_phone&&!isEditing.org_phone)&&

@@ -1,6 +1,7 @@
 import React, { useEffect, useState ,useRef } from "react";
 import { getUser  } from "../../lib/ChatRequests";
 import classes from "./ChatBox.module.scss";
+ // eslint-disable-next-line 
 import { format } from "timeago.js";
 import InputEmoji from 'react-input-emoji'
 import {origin} from '../../lib/api'
@@ -123,7 +124,7 @@ const ChatBox = ({ chat,currentUserRole, messages  ,currentUser ,onHandleSend , 
                     {typeof message?.desc === 'string' && message?.desc?.startsWith('attachment_IMG_') &&
                       <span >
                         <a href={origin+message?.desc} target={"_self"} >
-                          <img src={origin+message?.desc} crossOrigin="anonymous"  alt="Image attachment" />
+                          <img src={origin+message?.desc} crossOrigin="anonymous"  alt="attachment" />
                         </a>
                       </span>
                       }

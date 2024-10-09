@@ -1,3 +1,4 @@
+/* eslint-disable */
 import Header from '../components/layout/Header' ;
 import Categories from '../components/Categories' ;
 import Val from '../components/Val'
@@ -14,6 +15,11 @@ import {getModel} from '../lib/loaders';
 import {ALL_MODELS_URL} from '../lib/api' ;
 import axios from 'axios'
 
+import io from "socket.io-client";
+import {origin} from '../lib/api'
+
+
+const socket = io(origin);
 
 function EditModel() {
     const navigate = useNavigate();

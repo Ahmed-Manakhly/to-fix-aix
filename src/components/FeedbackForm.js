@@ -9,6 +9,7 @@ import { FaRegFaceFrown } from "react-icons/fa6";
 import { FaRegFaceMeh } from "react-icons/fa6";
 import { FaRegFaceSmile } from "react-icons/fa6";
 import { FaRegFaceLaughBeam } from "react-icons/fa6";
+import { useNavigation } from 'react-router-dom';
 
 
 
@@ -42,6 +43,7 @@ const RatingLabel = ({ ratingValue }) => {
 const FeedbackForm = ({formTitle , avatar,orgUsername ,thisUserRole,firstName, onSubmitFeedback}) => {
 
   const [rating, setRating] = useState(null);
+  const navigation = useNavigation();
   const isSubmitting = navigation.state === 'submitting' ;
 
 

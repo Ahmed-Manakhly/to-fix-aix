@@ -1,3 +1,4 @@
+/* eslint-disable */
 import classes from './FormActions.module.scss' ;
 import { useNavigate , Form ,useNavigation } from 'react-router-dom';
 import useInput from '../hooks/Use-Input';
@@ -26,16 +27,7 @@ const   FormActions = ({ thisModel=null , formTitle ,onCreatingModelAction ,payP
     const featuresIsInValid = !featuresIsValid && isTouched
     const imgRef = useRef(null);
     
-    // useEffect(() => {
-    //     if(thisModel? &&(thisModel?.userId !== authority) ){
-    //         let toast = {status :'error',message:'you have no access for this!',title:'Access Denied'};
-    //         dispatch(uiActions.notificationDataChanged(toast))
-    //         dispatch(uiActions.showNotification(true))
-    //         navigate("/",{replace :true});
-    //         return ;
-    //     }
-    // },[authority,thisModel?]) // move it out
-    //------------------------------------
+
     useEffect(() => {
         if(thisModel){
             setPayPerClick(payPerClickInit)

@@ -1,4 +1,3 @@
-
 import {useParams}  from "react-router-dom";
 import {useDispatch} from 'react-redux'; 
 import {uiActions} from '../store/UI-slice' ;
@@ -15,7 +14,7 @@ import ChatCard from '../components/ChatCard'
 import { Box } from "@mui/material";
 import { Col  } from 'react-bootstrap'
 
- 
+
 
 
 function ProfileDev({onlineUsers}) {
@@ -27,7 +26,7 @@ function ProfileDev({onlineUsers}) {
             navigate("/",{replace :true});
             return ;
         }
-    },[token])
+    },[token , navigate])
     const dispatch = useDispatch();  
     const [user,setUser] = useState({}) ;
     const [models,setModels] = useState([]) ;
@@ -65,7 +64,7 @@ function ProfileDev({onlineUsers}) {
         getModel(UPDATE_USER_BY_ID_URL+'/'+id, toastHandler , loadingState , notificationState , gettingData,'user!' )
         dispatch(uiActions.showNotification(false))
         // return redirect('');
-    },[])
+    },[dispatch , id])
         //----------------------------------------------------
         useEffect(() => {
             if(userUpdated && user.role === 'DEVELOPER' ){
@@ -85,7 +84,7 @@ function ProfileDev({onlineUsers}) {
                 dispatch(uiActions.showNotification(false))
                 setUserUpdated(false)
             }
-        },[userUpdated , user])
+        },[userUpdated , user , dispatch , id])
     //------------------------------------------
     useEffect(() => {
         if(userUpdated && user.role === 'CLIENT' ){
@@ -109,7 +108,7 @@ function ProfileDev({onlineUsers}) {
             dispatch(uiActions.showNotification(false))
             setUserUpdated(false)
         }
-    },[userUpdated , user])
+    },[userUpdated , user , dispatch , id ,token])
     //----------------------------------------------------------
     //img | title
     const columns = [

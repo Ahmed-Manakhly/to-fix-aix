@@ -13,7 +13,7 @@ function PageTable({data,columns , tableTitle}) {
                 <h2 className={"title"}>{tableTitle}</h2>
             </div>
             <Box m="40px" width="95%" sx={{
-                backgroundColor:'#fff', padding : '20px','border-radius': '15px','box-shadow': '5px 5px 10px var(--cultured)',
+                backgroundColor:'#fff', padding : '20px',borderRadius: '15px',boxShadow: '5px 5px 10px var(--cultured)',
                 "& .MuiDataGrid-root": {border: "none" , fontSize : '15px'},
                 "& .name-column--cell": {color: '#5DB8DD' ,fontWeight :"bold"},
                 "& .MuiDataGrid-columnHeaders": {

@@ -1,8 +1,7 @@
 /* eslint-disable react/prop-types */
+/* eslint-disable */
 import { options ,categoriesList_2} from '../data' ;
 import classes from './Controls.module.scss' ;
-// import {Link} from 'react-router-dom';
-//------------
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import {useState} from 'react' 
@@ -59,8 +58,6 @@ function Controls({onApplyControls}) {
   const [deliveryTime, setDeliveryTime] =useState(null);
   //=======================
   const [activeControls, setActiveControls] =useState([]);
-  //===================
-  // const [applyControls, setApplyControls] = useState(null);
   //===================
   const responsive = {
     superLargeDesktop: {

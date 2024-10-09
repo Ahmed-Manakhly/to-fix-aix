@@ -1,3 +1,4 @@
+/* eslint-disable */
 import Header from '../components/layout/Header' ;
 import Controls from '../components/Controls' ;
 import Val from '../components/Val'

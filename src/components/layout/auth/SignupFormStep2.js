@@ -65,7 +65,7 @@ const SignupFormStep2 = ( {stepData}) => {
             </Row>
             <Row xs={0} md lg className={`${classes["form-control"]} d-flex flex-column align-items-left w-100`} >
                 <label htmlFor='org_name'>Your Country</label>
-                <input type='text' id='country' name="country" placeholder="Your country Name"  readonly="readonly"
+                <input type='text' id='country' name="country" placeholder="Your country Name"  readOnly="readonly"
                 onChange={orgnameInputChangeHandler} onBlur={orgnameInputBlurHandler} value={country.name||''}/>
             </Row>
             {/* {===================================} */}

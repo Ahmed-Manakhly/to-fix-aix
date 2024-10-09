@@ -21,6 +21,7 @@ function OrdersClient() {
     
     const navigate = useNavigate();
     const token = getAuthToken() ;
+    const dispatch = useDispatch();  
     //---------------------------------------------
     useEffect(() => {
         if(!id){
@@ -30,7 +31,7 @@ function OrdersClient() {
             navigate("/",{replace :true});
             return ;
         }
-    },[id])
+    },[id ,dispatch ,navigate])
     //------------------------------------------------
     useEffect(() => {
         
@@ -53,9 +54,7 @@ function OrdersClient() {
         getOrder(GET_ORDERS_BY_CLIENT_URL+'/'+id, headers ,toastHandler , loadingState , notificationState , gettingData,'Orders!' )
         dispatch(uiActions.showNotification(false))
         // return redirect('');
-    },[])
-    //------------------------------------------
-    const dispatch = useDispatch();  
+    },[dispatch ,id,token])
     //==================================================================
     const [orders,setOrders] = useState([]) ;
     //--------------------------------------------------

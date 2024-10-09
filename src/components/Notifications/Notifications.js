@@ -2,6 +2,7 @@ import React, { useState , useEffect } from "react";
 import { getUser } from "../../lib/ChatRequests";
 import classes from './Notifications.module.scss'
 import {origin} from '../../lib/api'
+ // eslint-disable-next-line 
 import { format } from "timeago.js";
 import DeleteIcon from '@mui/icons-material/Delete';
 import {Link} from 'react-router-dom'

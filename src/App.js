@@ -176,7 +176,7 @@ function App() {
   const handleUpdateNotification = async(id) =>{
     try{
       const { data } = await updateNotification(id ,{unRead :  false})
-      console.log(data)
+      // console.log(data)
       setNotifysUpdated(true)
       setNotify(data)
     }catch(err){

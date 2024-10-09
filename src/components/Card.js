@@ -20,7 +20,9 @@ const Card =({category,title, desc, price, deliveryTime , cover , onAddProduct,s
     const thisUserRole  = token? JSON.parse(localStorage.getItem('userData')).role  : null
     return (
         <div className={classes["showcase"]}>
-            <Link className={classes["showcase-banner"]} to={`/models/view/${id}`}   onClick={()=>{thisUserId?socket.emit("refreshModel", {to:thisUserId}):null}} >
+            <Link className={classes["showcase-banner"]} to={`/models/view/${id}`}   onClick={()=>{
+                return thisUserId?socket.emit("refreshModel", {to:thisUserId}):null
+            }} >
                     <img src={origin+cover} alt={title}  crossOrigin="anonymous"  width="300" className={`${classes["product-img"]} ${classes.default}`}/>
                     <img src={origin+cover}  alt={title}  crossOrigin="anonymous"  width="300" className={`${classes["product-img"]} ${classes.hover}`}/>
                     <p className={classes["showcase-badge"]}>{category}</p>
@@ -38,7 +40,7 @@ const Card =({category,title, desc, price, deliveryTime , cover , onAddProduct,s
                                 </Link>}
                             </>
                             }                     
-                            <Link className={classes["btn-action"]} to={`/models/view/${id}`}  onClick={()=>{thisUserId?socket.emit("refreshModel", {to:thisUserId}):null}}>
+                            <Link className={classes["btn-action"]} to={`/models/view/${id}`}  onClick={()=>{ return thisUserId?socket.emit("refreshModel", {to:thisUserId}):null}}>
                                 <ion-icon name="eye-outline" ></ion-icon>
                             </Link>
                         </>}
@@ -68,7 +70,7 @@ const Card =({category,title, desc, price, deliveryTime , cover , onAddProduct,s
                         }
                     </div>
                 </div>
-                <Link to={`/models/view/${id}`} onClick={()=>{thisUserId?socket.emit("refreshModel", {to:thisUserId}):null}} className={classes["showcase-category"]}>{title}</Link>
+                <Link to={`/models/view/${id}`} onClick={()=>{return thisUserId?socket.emit("refreshModel", {to:thisUserId}):null}} className={classes["showcase-category"]}>{title}</Link>
                 <h3 className={classes["showcase-title"]}>{desc}</h3>
                 <div className={classes["info-box"]}>                    
                         <p>${price}</p>
