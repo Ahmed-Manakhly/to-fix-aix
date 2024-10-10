@@ -64,7 +64,7 @@ const ChatNew = ({msg , onlineUsers , onFeatchChats ,notify , onFeatchNotificati
     if(searchedValueChat === ''){
       setFilteredChats(chats)
     }
-  },[searchedValueChat ,searchedValueNo ,chats])
+  },[searchedValueChat ,searchedValueNo ,chats ,notifications])
 
   const handleSChangeChat = (event) => {
     setSearchedValueChat(event.target.value);
@@ -165,7 +165,7 @@ const ChatNew = ({msg , onlineUsers , onFeatchChats ,notify , onFeatchNotificati
         setCurrentChatUpdate(true)
       }
     }
-  },[chats ])
+  },[chats ,contact , currentChat , user?.id ,user?.role ])
   //====================================================================================================
   useEffect(()=>{
     if(currentChatUpdate){
@@ -186,7 +186,7 @@ const ChatNew = ({msg , onlineUsers , onFeatchChats ,notify , onFeatchNotificati
       }
       setCurrentChatUpdate(false)
     }
-  },[currentChatUpdate])
+  },[currentChatUpdate ,currentChat?.id , onFeatchChats])
    //============================================================================= actions
 
   const closeModal = ()=>{
@@ -197,7 +197,7 @@ const ChatNew = ({msg , onlineUsers , onFeatchChats ,notify , onFeatchNotificati
   //-------------------------------------
   const handleDeleteNotification = async(id) =>{
     try{
-      const { data } = await removeNotification(id)
+      await removeNotification(id)
       setNotificationsUpdated(true)
       onFeatchNotifications(true)
     }catch(err){
@@ -207,7 +207,7 @@ const ChatNew = ({msg , onlineUsers , onFeatchChats ,notify , onFeatchNotificati
   //-------------------------------------
   const handleUpdateNotification = async(id) =>{
     try{
-      const { data } = await updateNotification(id ,{unRead :  false})
+      await updateNotification(id ,{unRead :  false})
       setNotificationsUpdated(true)
       onFeatchNotifications(true)
     }catch(err){
@@ -217,7 +217,7 @@ const ChatNew = ({msg , onlineUsers , onFeatchChats ,notify , onFeatchNotificati
   //-------------------------------------
   const onAction = async (id)=>{
     try{
-      const { data } = await removeChat(id)
+      await removeChat(id)
       setChatsUpdated(true)
       setMessages(null)
       setCurrentChat(null)
