@@ -1,16 +1,14 @@
 import React from "react";
 import styles from "./BoxWidgets.module.scss";
 import { Link } from "react-router-dom";
-// import { AiFillSafetyCertificate } from "react-icons/ai";
 import { RiRobot2Line } from "react-icons/ri";
 import { GrRobot } from "react-icons/gr";
 import { FaRegMessage } from "react-icons/fa6";
 import { GoCodeReview } from "react-icons/go";
 import { FiShoppingCart } from "react-icons/fi";
-import {useEffect , useState , useRef} from 'react' ;
+import { useRef} from 'react' ;
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import {Container , Row , Col  } from 'react-bootstrap' 
-import { useSelector } from 'react-redux'; 
+import {Row , Col  } from 'react-bootstrap' 
 import { FaLocationDot } from "react-icons/fa6";
 import { FaUserAlt } from "react-icons/fa";
 import getStarted from '../assets/getStarted.png'
@@ -25,19 +23,10 @@ const BoxWidgets = ( {  profile=false , HandelFileChange , file , totalModels , 
   const role = JSON.parse(localStorage.getItem('userData'))?.role
   const createdAt = JSON.parse(localStorage.getItem('userData'))?.createdAt
   const first_name = JSON.parse(localStorage.getItem('userData'))?.first_name
-
-
-  // const [file,setFile] = useState() 
-  // const [isChanged, setIsChanged] = useState(false);
   const imgRef = useRef(null);
-
-//   const handelFileChange = (e)=>{
-//     setFile(e.target.files[0])
-//     setIsChanged(true)
-// }
-const onFileChange = (e)=>{
-  HandelFileChange(e.target.files[0])
-}
+  const onFileChange = (e)=>{
+    HandelFileChange(e.target.files[0])
+  }
 
 
 const handleImgClick=()=>{
@@ -51,11 +40,7 @@ const handleImgClick=()=>{
           <div className={styles.__box_main}>
             {/* //------------------------- */}
             <div className={styles.__box_leftside}>
-              {/* <div className={styles.__box_image}>
-                <img src={img} alt={title} />
-              </div> */}
               <div  className={` ${styles.imgCon} ${styles['menu-title']}  `} >
-                {/* <img src={UserHolder} alt="UserHolder" /> */}
                   <Col xs={0} md lg className={`${styles.img_cover} d-flex flex-column align-items-left w-100`} >
                     <input name='avatar'type="file" onChange={onFileChange} ref={imgRef} style={{display : 'none'}}/>
                     {profile &&<span>
@@ -75,7 +60,7 @@ const handleImgClick=()=>{
                   <h6 className={styles.info__}><FaUserAlt style={{color: '#5DB8DD'}} />{'Member since '}{createdAt?new Date(createdAt).toLocaleDateString('pt-PT'):null}</h6>
                 </Row>
               }
-               {!profile &&
+              {!profile &&
               <Row className={styles.infoCon}>
                 {role === 'DEVELOPER' && 
                   <Link to="/models/new" className={styles["banner-btn"]}> {'Create Model'} </Link>
@@ -124,23 +109,6 @@ const handleImgClick=()=>{
                   </div>
                 }
               </div>
-
-                
-
-
-              {/* <Link to={'/'} className={styles._headding}>
-              <RiRobot2Line className={styles.iconImg} />
-              {title}
-              </Link>
-              <strong className={styles.__strong}>
-              {text_1}
-              </strong>
-              <p className={styles.__content}>
-                {text_2}
-              </p>
-              {action &&              
-                <Link to={actionTo} className={styles["banner-btn_"]} >{actionTitle}</Link>
-              } */}
             </div>
           </div>
         </div>

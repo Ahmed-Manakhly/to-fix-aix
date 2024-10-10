@@ -1,7 +1,6 @@
 import classes from './Card.module.scss' ;
 import {origin} from '../lib/api' 
 import {Link} from 'react-router-dom' ;
-import {  Row , Col  } from 'react-bootstrap' 
 import {getAuthToken} from '../utility/tokenLoader'
 
 
@@ -50,7 +49,7 @@ const Card =({category,title, desc, price, deliveryTime , cover , onAddProduct,s
                 <div className={classes["user-card"]}>
                     <div className={` ${classes.imgCon_1}`} >
                         <Link to={`/profile/${userId}`}  className={` ${classes.imgCon}`} >
-                            {avatar &&<img src={origin+avatar} alt="Model Cover Image" crossOrigin="anonymous"  />}
+                            {avatar &&<img src={origin+avatar} alt="Model Cover" crossOrigin="anonymous"  />}
                             {!avatar &&  <div className={classes['UserHolder']} >{seller&&seller[0]?.toUpperCase()}</div>}
                         </Link>
                     </div>

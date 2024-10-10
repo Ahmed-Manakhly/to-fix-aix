@@ -90,7 +90,7 @@ function App() {
     }else if(!userData){
       console.log('_______out')
     }
-  }, [userData?.id]);
+  }, [userData?.id , userData]);
   //-------------------
   const onModelsUpdated = (bool)=>{
     setModelsUpdated(false)

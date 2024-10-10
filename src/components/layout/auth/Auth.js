@@ -10,7 +10,6 @@ import { useState} from 'react' ;
 
 //-----------------------------------------
 import { FaFacebookF } from "react-icons/fa";
-// import  contactImg  from '../assets/contactImg.png';
 import { FaWhatsapp } from "react-icons/fa";
 import { FaMobileAlt } from "react-icons/fa";
 import { FaPhoneAlt } from "react-icons/fa";
