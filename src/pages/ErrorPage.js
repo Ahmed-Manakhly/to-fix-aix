@@ -85,7 +85,7 @@ const ErrorPage = ({msgCounter , notCounter , notifys , handleDeleteNotification
                 }
             }
         }
-    },[token])
+    },[token ,userData?.role ,dispatch])
     //----------------------------------------
     const navigate = useNavigate();
     const [scroll,setScroll]=useState(false)
@@ -129,7 +129,7 @@ const ErrorPage = ({msgCounter , notCounter , notifys , handleDeleteNotification
                 init = false
             }
         }
-    }, [token  , navigate , dispatch , init ,timeExtanded ]);
+    }, [token  , navigate , dispatch , init ,timeExtanded ,userData ]);
     //----------------------------------------
     useEffect(()=>{
         if(warning.show === true){

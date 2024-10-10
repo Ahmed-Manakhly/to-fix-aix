@@ -3,16 +3,16 @@ import classes from './Footer.module.scss' ;
 import {Link} from 'react-router-dom' ;
 import robot from '../../assets/chat_bot.png'
 //---------------------------------------------------------------------
-const FooterCat = ({title,links})=>{
-  return (
-    <div className={classes["footer-category-box"]}>
-      <h3 className={classes["category-box-title"]}>{title}</h3>
-      {links.map((item,index)=>{return(
-        <Link key={index} to={item.to} className={classes["footer-category-link"]}>{item.title}</Link>
-      )})}
-    </div>
-  )
-}
+// const FooterCat = ({title,links})=>{
+//   return (
+//     <div className={classes["footer-category-box"]}>
+//       <h3 className={classes["category-box-title"]}>{title}</h3>
+//       {links.map((item,index)=>{return(
+//         <Link key={index} to={item.to} className={classes["footer-category-link"]}>{item.title}</Link>
+//       )})}
+//     </div>
+//   )
+// }
 //-------------------------------------------------------------------------------
 const FooterNav = ({title,links , onClickLink})=>{
   return (

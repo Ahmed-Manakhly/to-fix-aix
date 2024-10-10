@@ -8,7 +8,6 @@ import { useDispatch} from 'react-redux';
 import {authActions} from '../../store/Auth.-slice' ;
 import {uiActions} from '../../store/UI-slice' ;
 import styles from './Topbar.module.scss' ;
-import UserHolder from '../../assets/userHolder.jpg'
 import {origin} from '../../lib/api' 
 //----------------------------------------------------------------------------
 const AccordionLink =({menuTitle,menuItems , onClick})=>{  //  onClick={onClickLink?.bind(null,item.title)}

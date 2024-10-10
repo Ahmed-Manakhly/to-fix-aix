@@ -23,8 +23,9 @@ function CreateModel() {
     const token = getAuthToken() ;
     const authority = token? JSON.parse(localStorage.getItem('userData')).role === "DEVELOPER": false
     const userData = useSelector(state => state.auth.userData) ;
-    const {rule_id , target_id , module_id,id} = userData;
+    const {rule_id , target_id , module_id} = userData;
     const PROFILE_COMPLETED = (rule_id!==0&&target_id!==0 && module_id!==0)
+    const dispatch = useDispatch();  
     //=============================================================================
     useEffect(() => {
         if(!token && !authority){
@@ -34,8 +35,7 @@ function CreateModel() {
             navigate("/",{replace :true});
             return ;
         }
-    },[authority,token])
-    const dispatch = useDispatch();  
+    },[authority,token ,dispatch ,navigate ])
     //==========================================================================================
     useEffect(() => {
         if(!PROFILE_COMPLETED){
@@ -45,7 +45,7 @@ function CreateModel() {
             navigate(`/profileSettings`,{replace :true});
             return ;
         }
-    },[PROFILE_COMPLETED])
+    },[PROFILE_COMPLETED , dispatch , navigate])
     //==========================================================================================
 
         const onCreatingModelAction =(file,modelData)=>{

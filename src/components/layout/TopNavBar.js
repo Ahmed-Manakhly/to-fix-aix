@@ -21,7 +21,7 @@ function TopNavBar({getSearch}) {
     if(searchIsValid && categoryIsValid ) {
       setShow(false)
     }
-  } , [searchByVal ,searchVal ])
+  } , [searchByVal ,searchVal ,categoryIsValid])
   const handleClick = ()=>{
     if(categoryIsInvalid || searchIsInvalid ||!searchByVal || !searchVal){
       setShow(true)

@@ -18,8 +18,8 @@ const   ModelDataTop = ({ model=null , formTitle }) => {
                         <Row className={`justify-content-md-center d-flex flex-column justify-content-center  p-lg-4 align-items-center`}>
                             <Row className={classes["img_sec"]}>
                                 <Col xs={0} md lg className={`${classes.img_cover} d-flex flex-column align-items-left w-100`} >
-                                    {model?.cover &&<img src={origin+model.cover} alt="Model Cover Image" crossOrigin="anonymous"  />}
-                                    {!model?.cover && <img src={imgHolder} alt="Model Cover Image" crossOrigin="anonymous"  />}
+                                    {model?.cover &&<img src={origin+model.cover} alt="Model Cover" crossOrigin="anonymous"  />}
+                                    {!model?.cover && <img src={imgHolder} alt="Model Cover" crossOrigin="anonymous"  />}
                                 </Col>
                                 <Col> 
                                     <Row xs={0} md lg className={`${classes["form-control"]} d-flex flex-column align-items-left w-100`} >

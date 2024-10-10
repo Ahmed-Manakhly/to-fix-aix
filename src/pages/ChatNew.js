@@ -64,7 +64,7 @@ const ChatNew = ({msg , onlineUsers , onFeatchChats ,notify , onFeatchNotificati
     if(searchedValueChat === ''){
       setFilteredChats(chats)
     }
-  },[searchedValueChat ,searchedValueNo])
+  },[searchedValueChat ,searchedValueNo ,chats])
 
   const handleSChangeChat = (event) => {
     setSearchedValueChat(event.target.value);

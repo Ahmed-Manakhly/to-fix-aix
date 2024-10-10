@@ -48,7 +48,7 @@ const handleImgClick=()=>{
                     </span>}
                   </Col>
                     {file&&<img src={URL.createObjectURL(file)} alt="avatar" />}
-                    {(!file && avatar) &&<img src={origin+avatar} alt="Model Cover Image" crossOrigin="anonymous" />}
+                    {(!file && avatar) &&<img src={origin+avatar} alt="Model Cover" crossOrigin="anonymous" />}
                     {(!file && !avatar) &&  <div className={styles['UserHolder']} >{org_username?org_username[0]?.toUpperCase():''}</div>}
               </div>
               {profile &&

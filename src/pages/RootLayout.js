@@ -70,7 +70,7 @@ const RootLayout = ({msgCounter , notCounter , notifys , handleDeleteNotificatio
         if(timeExtanded){
             token = getAuthToken() ;
         }
-    },[timeExtanded])
+    },[timeExtanded , token])
     //----------------------------------CART DATA
     useEffect(()=>{
         if(token){
@@ -81,7 +81,7 @@ const RootLayout = ({msgCounter , notCounter , notifys , handleDeleteNotificatio
                 }
             }
         }
-    },[token])
+    },[token , dispatch , userData?.role ])
     //----------------------------------------
     const navigate = useNavigate();
     const [scroll,setScroll]=useState(false)
@@ -125,7 +125,7 @@ const RootLayout = ({msgCounter , notCounter , notifys , handleDeleteNotificatio
                 init = false
             }
         }
-    }, [token  , navigate , dispatch , init ,timeExtanded ]);
+    }, [token  , navigate , dispatch , init ,timeExtanded ,userData ]);
     //----------------------------------------
     useEffect(()=>{
         if(warning.show === true){

@@ -46,7 +46,7 @@ const FeedbackCard = ({userData ,desc ,star , createdAt})=>{
           <h6 style={{color: '#5DB8DD'}} >{'Reviewed On '}{createdAt?new Date(createdAt).toLocaleDateString('pt-PT'):null}</h6>
             <div className={styles["widget_11_con"]}>
               <div  className={` ${styles.imgCon} `} >
-                    {userData?.avatar &&<img src={origin+userData?.avatar} alt="Cover Image" crossOrigin="anonymous"  />}
+                    {userData?.avatar &&<img src={origin+userData?.avatar} alt="Cover" crossOrigin="anonymous"  />}
                     {!userData?.avatar &&  <div className={styles['UserHolder']} >{userData?.org_username?userData?.org_username[0]?.toUpperCase():''}</div>}
               </div>
               <div className={styles.infoCon}>

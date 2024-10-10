@@ -95,7 +95,7 @@ const FeedbackForm = ({formTitle , avatar,orgUsername ,thisUserRole,firstName, o
             <Col className={`${styles.__box_leftside} `}>
               <div className={styles["widget_11_con"]}>
                 <div  className={` ${styles.imgCon} `} >
-                      {avatar &&<img src={origin+avatar} alt="Cover Image"  crossOrigin="anonymous"  />}
+                      {avatar &&<img src={origin+avatar} alt="Cover"  crossOrigin="anonymous"  />}
                       {!avatar &&  <div className={styles['UserHolder']} >{orgUsername?orgUsername[0]?.toUpperCase():''}</div>}
                 </div>
                 <div className={styles.infoCon}>

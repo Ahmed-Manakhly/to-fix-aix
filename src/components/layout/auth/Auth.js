@@ -1,5 +1,5 @@
 import Modal from '../Modal'
-import { Form , Link , useActionData, useSearchParams ,useNavigate } from 'react-router-dom';
+import { Form , Link , useSearchParams ,useNavigate } from 'react-router-dom';
 import classes from './Auth.module.scss' ;
 import LoginForm from './LoginForm' ;
 import SignupFormStep1 from './SignupFormStep1' ;
@@ -7,15 +7,7 @@ import SignupFormStep2 from './SignupFormStep2' ;
 import AccountRoleForm from './AccountRoleForm' ;
 import logo from '../../../assets/LOGO_3.png'
 import { useState} from 'react' ;
-
-//-----------------------------------------
-import { FaFacebookF } from "react-icons/fa";
-import { FaWhatsapp } from "react-icons/fa";
-import { FaMobileAlt } from "react-icons/fa";
-import { FaPhoneAlt } from "react-icons/fa";
-import {Container , Row , Col  } from 'react-bootstrap' 
-import { FaLinkedinIn } from "react-icons/fa"; 
-import { FaYoutube } from "react-icons/fa";
+import { Row , Col  } from 'react-bootstrap' 
 
 //-----------------------------------------
 
@@ -36,7 +28,7 @@ const Auth = ( ) => {
         navigate('/' )
     }
     let innerWidth,stepNumber
-    const data = useActionData() ;
+    // const data = useActionData() ;
     const [SearchParams]=useSearchParams() ;
     const isLogin = SearchParams.get('mode') === 'login' ;
     const isSignup = SearchParams.get('mode') === 'signup' ;

@@ -2,14 +2,7 @@ import React from "react";
 import styles from "./ModelBoxWidgets.module.scss";
 import { useNavigate ,Link } from "react-router-dom";
 import { RiRobot2Line } from "react-icons/ri";
-import { GrRobot } from "react-icons/gr";
-import { FaRegMessage } from "react-icons/fa6";
-import { GoCodeReview } from "react-icons/go";
-import { FiShoppingCart } from "react-icons/fi";
-import {useEffect , useState , useRef} from 'react' ;
-import BorderColorIcon from '@mui/icons-material/BorderColor';
 import {Container , Row , Col  } from 'react-bootstrap' 
-import { useSelector } from 'react-redux'; 
 import { FaLocationDot } from "react-icons/fa6";
 import { FaUserAlt } from "react-icons/fa";
 import {origin} from '../lib/api' 

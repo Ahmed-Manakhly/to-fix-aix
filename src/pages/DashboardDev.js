@@ -22,6 +22,7 @@ function DashboardDev() {
     let id =  JSON.parse(localStorage.getItem('userData'))?.id
     const navigate = useNavigate();
     const token = getAuthToken() ;
+    const dispatch = useDispatch();  
     //---------------------------------------------
     useEffect(() => {
         if(!id){
@@ -31,7 +32,7 @@ function DashboardDev() {
             navigate("/",{replace :true});
             return ;
         }
-    },[id])
+    },[id ,dispatch,navigate])
     //------------------------------------------------
     useEffect(() => {
             const toastHandler =(toast)=>{
@@ -48,7 +49,7 @@ function DashboardDev() {
             }
             getModel(ALL_MODELS_BY_USER_URL+'/'+id, toastHandler , loadingState , notificationState , gettingData,'list of models!' )
             dispatch(uiActions.showNotification(false))
-    },[])
+    },[dispatch , id])
     //------------------------------------------
     useEffect(() => {
         
@@ -70,9 +71,7 @@ function DashboardDev() {
         };
         getOrder(GET_ORDERS_BY_DEV_URL+'/'+id, headers ,toastHandler , loadingState , notificationState , gettingData,'Orders!' )
         dispatch(uiActions.showNotification(false))
-    },[])
-    //------------------------------------------
-    const dispatch = useDispatch();  
+    },[dispatch , id,token ])
     //==================================================================
     const [warning,setWarning] = useState({show:false , type : '' , message : '' , action : ''}) ;
     const [models,setModels] = useState([]) ;

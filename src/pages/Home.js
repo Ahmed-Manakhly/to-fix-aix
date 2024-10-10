@@ -36,7 +36,7 @@ function Home({modelsUpdated , onModelsUpdated , onClickLink }) {
         getModel(ALL_MODELS_URL, toastHandler , loadingState , notificationState , gettingData,'list of models!' )
         dispatch(uiActions.showNotification(false))
         // return redirect('');
-    },[])
+    },[dispatch])
     //------------------------------------------
     //------------------------------------------------
     useEffect(() => {
@@ -58,7 +58,7 @@ function Home({modelsUpdated , onModelsUpdated , onClickLink }) {
             onModelsUpdated(false)
             // return redirect('');
         }
-    },[modelsUpdated])
+    },[modelsUpdated , dispatch , onModelsUpdated])
     //------------------------------------------
     return (
         <>
