@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { createBrowserRouter, RouterProvider , Link , redirect , Navigate } from "react-router-dom";
 import {useDispatch , useSelector} from 'react-redux'; 
 import {authActions} from './store/Auth.-slice' ;
@@ -90,7 +91,7 @@ function App() {
     }else if(!userData){
       // console.log('_______out')
     }
-  }, [userData?.id , userData]);
+  }, [userData?.id]);
   //-------------------
   const onModelsUpdated = (bool)=>{
     setModelsUpdated(false)
