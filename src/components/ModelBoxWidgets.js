@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import React from "react";
 import styles from "./ModelBoxWidgets.module.scss";
 import { useNavigate ,Link } from "react-router-dom";
@@ -33,7 +34,7 @@ const ModelBoxWidgets = ( { model , orderRequestHandler , isBuyer ,otherDev ,isS
               </div>
               <div className={styles["widget_11_con"]}>
                 <div  className={` ${styles.imgCon} `} >
-                      {avatar &&<img src={origin+avatar} alt="Cover Image"  crossOrigin="anonymous"  />}
+                      {avatar &&<img src={origin+avatar} alt="Cover"  crossOrigin="anonymous"  />}
                       {!avatar &&  <div className={styles['UserHolder']} >{org_username?org_username[0]?.toUpperCase():''}</div>}
                 </div>
                 <div className={styles.infoCon}>

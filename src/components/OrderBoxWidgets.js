@@ -1,6 +1,7 @@
+// eslint-disable-next-line
 import React from "react";
 import styles from "./OrderBoxWidgets.module.scss";
-import { useNavigate ,Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { RiRobot2Line } from "react-icons/ri";
 import {Container , Row , Col  } from 'react-bootstrap' 
 import { FaLocationDot } from "react-icons/fa6";
@@ -18,15 +19,6 @@ const OrderBoxWidgets = ( { order  , confirmOrdeerHandler}) => {
   const isBuyer = order?.clientData?.id ===  JSON.parse(localStorage.getItem('userData'))?.id ;
   const isSeller =order?.developerData?.id ===   JSON.parse(localStorage.getItem('userData'))?.id ;
 
-
-
-
-
-  const navigate = useNavigate();
-  function cancelHandler() {
-  navigate('..');
-  }
-
   return (
     <Container>
       <h2 className={styles["title"]}>The Agreement Details..</h2>
@@ -39,8 +31,8 @@ const OrderBoxWidgets = ( { order  , confirmOrdeerHandler}) => {
               </div>
               <div className={styles["widget_11_con"]}>
                 <Col xs={0} md lg className={`${styles.img_cover} d-flex flex-column align-items-left w-100`} >
-                    {order?.img &&<img src={origin+order.img} alt="Model Cover Image" crossOrigin="anonymous" />}
-                    {!order?.img && <img src={imgHolder} alt="Model Cover Image" />}
+                    {order?.img &&<img src={origin+order.img} alt="Model Cover" crossOrigin="anonymous" />}
+                    {!order?.img && <img src={imgHolder} alt="Model Cover" />}
                 </Col>
               </div>
               <Row className={styles.infoCon_}>
@@ -117,7 +109,7 @@ const OrderBoxWidgets = ( { order  , confirmOrdeerHandler}) => {
               </div>
               <div className={styles["widget_11_con"]}>
                 <div  className={` ${styles.imgCon} `} >
-                      {order?.developerData?.avatar &&<img src={origin+order?.developerData?.avatar} alt="Cover Image" crossOrigin="anonymous"  />}
+                      {order?.developerData?.avatar &&<img src={origin+order?.developerData?.avatar} alt="Cover" crossOrigin="anonymous"  />}
                       {!order?.developerData?.avatar &&  <div className={styles['UserHolder']} >{order?.developerData?.org_username?order?.developerData?.org_username[0]?.toUpperCase():''}</div>}
                 </div>
                 <div className={styles.infoCon}>
@@ -175,7 +167,7 @@ const OrderBoxWidgets = ( { order  , confirmOrdeerHandler}) => {
               </div>
               <div className={styles["widget_11_con"]}>
                 <div  className={` ${styles.imgCon} `} >
-                      {order?.clientData?.avatar &&<img src={origin+order?.clientData?.avatar} alt="Cover Image"  crossOrigin="anonymous"  />}
+                      {order?.clientData?.avatar &&<img src={origin+order?.clientData?.avatar} alt="Cover"  crossOrigin="anonymous"  />}
                       {!order?.clientData?.avatar &&  <div className={styles['UserHolder']} >{order?.clientData?.org_username?order?.clientData?.org_username[0]?.toUpperCase():''}</div>}
                 </div>
                 <div className={styles.infoCon}>
