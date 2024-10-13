@@ -12,5 +12,11 @@ export const removeNotification = (id) => API.delete(`api/notification/${id}`); 
 export const updateNotification = (id , data) => API.patch(`api/notification/${id}` , data); // notification
 
 
-export const getUser = (userId) => API.get(`api/users/${userId}`);
+export const getUser = (userId , token) => {
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+    };
+    return API.get(`api/users-me/${userId}`,{headers})
+}; //here 1
 

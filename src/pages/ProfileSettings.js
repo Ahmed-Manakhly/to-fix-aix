@@ -10,9 +10,11 @@ import {uiActions} from '../store/UI-slice' ;
 import {  useState} from 'react' ;
 import {useNavigate } from 'react-router-dom';
 import {authActions} from '../store/Auth.-slice' ;
+import {getAuthToken} from '../utility/tokenLoader'
 
 
 function ProfileSettings() {
+    const token = getAuthToken() ;
     const navigate = useNavigate();
     const dispatch = useDispatch();  
     const [file,setFile] = useState() ;
@@ -43,8 +45,15 @@ function ProfileSettings() {
             //---------------------------------------------
                 const formdata = new FormData();
                 file?formdata.append('avatar',file):null
+                const config = {
+                    headers: {
+                    'Content-Type': 'multipart/form-data', // Use 'multipart/form-data' for FormData
+                    'Authorization': `Bearer ${token}`,
+                    },
+                    params: authData ? authData : null,
+                };
                 try{
-                    const response = await axios.patch(UPDATE_USER_BY_ID_URL+'/'+id,formdata , {params:authData?authData:null});
+                    const response = await axios.patch(UPDATE_USER_BY_ID_URL+'/'+id,formdata , config);
                     const resData =  response.data ;
                     loadingState(false)
                     const token =  localStorage.getItem('token') ;

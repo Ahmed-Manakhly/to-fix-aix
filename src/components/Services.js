@@ -15,12 +15,10 @@ function Services({models , title ,noNext,onGoNext,page,pages,noPrev,onGoPrev}) 
         dispatch(cartActions.addToCart(item))
     }
     return (
-        <section className={`${classes["container"]}`}>
+        <div className={`${classes["container"]}`}>
             <h2 className={classes["title"]}>{title}</h2>
             <div className={classes["room__grid"]}>
             {models.map((ele,i)=>{
-                // let coverLink = URL.createObjectURL({name : `${origin}${ele.cover}`})
-                // ele.cover = `${origin}${ele.cover}`
                 return(
                 <Card 
                 seller={ele?.userData?.first_name ? ele?.userData?.first_name :ele?.userData?.org_username}
@@ -45,7 +43,7 @@ function Services({models , title ,noNext,onGoNext,page,pages,noPrev,onGoPrev}) 
                 <span>{`Page ${page}/${pages}`}</span>
                 <button disabled={noNext} onClick={onGoNext}>Next Page</button>
             </div>
-        </section>
+        </div>
     )
 }
 

@@ -6,15 +6,16 @@ import {origin} from '../../lib/api'
 import { format } from "timeago.js";
 import DeleteIcon from '@mui/icons-material/Delete';
 import {Link} from 'react-router-dom'
+import {getAuthToken} from '../../utility/tokenLoader'
 
 const Notifications = ({ data, onRemove , onUpdate}) => {
-
+  const token = getAuthToken() ;
   const [userData, setUserData] = useState(null)
   useEffect(()=> {
     let userId = data?.from
     const getUserData = async ()=> {
       try{
-        const {data} =await getUser(userId)
+        const {data} =await getUser(userId , token)
         setUserData(data.data.user)
       }catch(error)
       {
@@ -22,7 +23,7 @@ const Notifications = ({ data, onRemove , onUpdate}) => {
       }
     }
     getUserData();
-  }, [data])
+  }, [data , token])
   //=====================================================================================================================
   return (
     <>

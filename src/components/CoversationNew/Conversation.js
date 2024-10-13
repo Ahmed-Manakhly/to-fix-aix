@@ -6,9 +6,10 @@ import {origin} from '../../lib/api'
 import { format } from "timeago.js";
 import DeleteIcon from '@mui/icons-material/Delete';
 import {Link} from 'react-router-dom'
+import {getAuthToken} from '../../utility/tokenLoader'
 
 const Conversation = ({ data, online ,currentUserRole , onRemove , to}) => {
-
+  const token = getAuthToken() ;
   const [userData, setUserData] = useState(null)
   useEffect(()=> {
     let userId
@@ -20,7 +21,7 @@ const Conversation = ({ data, online ,currentUserRole , onRemove , to}) => {
     const getUserData = async ()=> {
       try
       {
-          const {data} =await getUser(userId)
+          const {data} =await getUser(userId , token)
           setUserData(data.data.user)
       }
       catch(error)
@@ -29,7 +30,7 @@ const Conversation = ({ data, online ,currentUserRole , onRemove , to}) => {
       }
     }
     getUserData();
-  }, [data , currentUserRole])
+  }, [data , currentUserRole , token])
   //=====================================================================================================================
   return (
     <>

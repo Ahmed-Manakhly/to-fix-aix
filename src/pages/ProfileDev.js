@@ -13,6 +13,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import ChatCard from '../components/ChatCard'
 import { Box } from "@mui/material";
 import { Col  } from 'react-bootstrap'
+// import {getAuthToken} from '../utility/tokenLoader'
 
 
 
@@ -47,7 +48,10 @@ function ProfileDev({onlineUsers}) {
     //------------------------------------------------
 
     useEffect(() => {
-
+        const  headers = {
+            'Content-Type': 'multipart/form-data', 
+            'Authorization': `Bearer ${token}`,
+        }
         const toastHandler =(toast)=>{
             dispatch(uiActions.notificationDataChanged(toast))
         } 
@@ -61,10 +65,10 @@ function ProfileDev({onlineUsers}) {
             setUser(data?data?.user:null)
             setUserUpdated(true)
         }
-        getModel(UPDATE_USER_BY_ID_URL+'/'+id, toastHandler , loadingState , notificationState , gettingData,'user!' )
+        getOrder(UPDATE_USER_BY_ID_URL+'/'+id, headers ,toastHandler , loadingState , notificationState , gettingData,'user!' )
         dispatch(uiActions.showNotification(false))
         // return redirect('');
-    },[dispatch , id])
+    },[dispatch , id , token])
         //----------------------------------------------------
         useEffect(() => {
             if(userUpdated && user.role === 'DEVELOPER' ){

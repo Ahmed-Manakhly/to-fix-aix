@@ -19,32 +19,34 @@ const Card =({category,title, desc, price, deliveryTime , cover , onAddProduct,s
     const thisUserRole  = token? JSON.parse(localStorage.getItem('userData')).role  : null
     return (
         <div className={classes["showcase"]}>
-            <Link className={classes["showcase-banner"]} to={`/models/view/${id}`}   onClick={()=>{
-                return thisUserId?socket.emit("refreshModel", {to:thisUserId}):null
-            }} >
+            <div className={classes["showcase-banner"]} >
+                <Link to={`/models/view/${id}`}   onClick={()=>{
+                    return thisUserId?socket.emit("refreshModel", {to:thisUserId}):null
+                }} >
                     <img src={origin+cover} alt={title}  crossOrigin="anonymous"  width="300" className={`${classes["product-img"]} ${classes.default}`}/>
                     <img src={origin+cover}  alt={title}  crossOrigin="anonymous"  width="300" className={`${classes["product-img"]} ${classes.hover}`}/>
-                    <p className={classes["showcase-badge"]}>{category}</p>
-                    <div className={classes["showcase-actions"]}>
-                        {token &&
-                        <> 
-                            {
-                            thisUserRole==='CLIENT' &&
-                            <>
-                                {!cart && <Link to={'/'}className={classes["btn-action"]} onClick={onAddProduct} >
-                                    <ion-icon name="heart-outline"></ion-icon>
-                                </Link>}
-                                {cart && <Link to={'/cart'}className={classes["btn-action"]} onClick={onRemoveProduct} >
-                                    <ion-icon name="trash-outline"></ion-icon>
-                                </Link>}
-                            </>
-                            }                     
-                            <Link className={classes["btn-action"]} to={`/models/view/${id}`}  onClick={()=>{ return thisUserId?socket.emit("refreshModel", {to:thisUserId}):null}}>
-                                <ion-icon name="eye-outline" ></ion-icon>
-                            </Link>
-                        </>}
-                    </div>
-            </Link>
+                </Link>
+                <p className={classes["showcase-badge"]}>{category}</p>
+                <div className={classes["showcase-actions"]}>
+                    {token &&
+                    <> 
+                        {
+                        thisUserRole==='CLIENT' &&
+                        <>
+                            {!cart && <Link to={'/'}className={classes["btn-action"]} onClick={onAddProduct} >
+                                <ion-icon name="heart-outline"></ion-icon>
+                            </Link>}
+                            {cart && <Link to={'/cart'}className={classes["btn-action"]} onClick={onRemoveProduct} >
+                                <ion-icon name="trash-outline"></ion-icon>
+                            </Link>}
+                        </>
+                        }                     
+                        <Link className={classes["btn-action"]} to={`/models/view/${id}`}  onClick={()=>{ return thisUserId?socket.emit("refreshModel", {to:thisUserId}):null}}>
+                            <ion-icon name="eye-outline" ></ion-icon>
+                        </Link>
+                    </>}
+                </div>
+            </div>
             <div className={classes["showcase-content"]}>
                 <div className={classes["user-card"]}>
                     <div className={` ${classes.imgCon_1}`} >

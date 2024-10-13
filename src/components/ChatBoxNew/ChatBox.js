@@ -9,8 +9,10 @@ import { IoImagesOutline } from "react-icons/io5";
 import { IoSend } from "react-icons/io5";
 import { RiRobot2Line } from "react-icons/ri";
 import {Link} from 'react-router-dom'
+import {getAuthToken} from '../../utility/tokenLoader'
 
 const ChatBox = ({ chat,currentUserRole, messages  ,currentUser ,onHandleSend , onClose , online}) => {
+  const token = getAuthToken() ;
   const [userData, setUserData] = useState(null);
   const [newMessage, setNewMessage] = useState("");
   const [file,setFile] = useState() 
@@ -34,7 +36,7 @@ const ChatBox = ({ chat,currentUserRole, messages  ,currentUser ,onHandleSend , 
     }
     const getUserData = async () => {
       try {
-        const { data } = await getUser(userId);
+        const { data } = await getUser(userId , token);
         setUserData(data.data.user);
       } catch (error) {
         console.log(error);
@@ -42,7 +44,7 @@ const ChatBox = ({ chat,currentUserRole, messages  ,currentUser ,onHandleSend , 
     };
 
     if (chat !== null) getUserData();
-  }, [chat, currentUserRole]);
+  }, [chat, currentUserRole ,token]);
 
 
   // Send Message
