@@ -90,6 +90,7 @@ function App() {
       });
     }else if(!userData){
       // console.log('_______out')
+      return
     }
   }, [userData?.id]);
   //-------------------
@@ -121,7 +122,7 @@ function App() {
           const { data } = await userChats(userId);
           setChats(data?.data?.chats);
         } catch (error) {
-          console.log(error);
+          console.log(error.respons.data.message);
         }
       };
       getChats();
@@ -136,7 +137,7 @@ function App() {
           const { data } = await userNotifications(userId);
           setNotifys(data?.data);
         } catch (error) {
-          console.log(error);
+          console.log(error.respons.data.message);
         }
       };
       getNotifications();
@@ -170,7 +171,7 @@ function App() {
       setNotifysUpdated(true)
       setNotify(data)
     }catch(err){
-      console.log(err)
+      console.log(err.respons.data.message);
     }
   }
   //-------------------------------------
@@ -181,7 +182,7 @@ function App() {
       setNotifysUpdated(true)
       setNotify(data)
     }catch(err){
-      console.log(err)
+      console.log(err.respons.data.message);
     }
   }
   //-------------------------------------
@@ -212,7 +213,7 @@ function App() {
       setChatsUpdated(true)
       setMsg(data)
     }catch(err){
-      console.log(err)
+      console.log(err.respons.data.message);
     }
   }
   //=====================================================================================

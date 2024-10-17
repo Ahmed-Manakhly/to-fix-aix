@@ -62,10 +62,10 @@ const SignupFormStep1 = ( {onStepData}) => {
                 </Row>
 
             {/* {===================================} */}
-            <Row className={`${classes["actions"]} d-flex  align-items-center w-100 m-0`}>
-                <Link to='?mode=signup' className={`${classes['form-btn']} d-flex flex-column align-items-left w-50`}>Previous</Link>
-                    <button type="button" className={`${classes['form-btn']} d-flex flex-column align-items-left w-50`} onClick={handelOnStepData}  disabled={!formIsValid} >
-                        {/* <Link className={`${classes['form-btn']} d-flex flex-column align-items-left w-100`}to={`?role=${role}&step=2`} ></Link > */}
+            <Row className={`${classes["actions"]}  d-flex  align-items-center w-100 m-0`}>
+                <Link to='?mode=signup' className={`${classes['form-btn']} ${classes["actions__"]}  d-flex flex-column align-items-left w-50`}>Previous</Link>
+                    <button type="button" className={`${classes['form-btn']} ${classes["actions__"]}  d-flex flex-column align-items-left w-50`}
+                        onClick={handelOnStepData}  disabled={!formIsValid} >
                         Continue
                     </button>
             </Row>

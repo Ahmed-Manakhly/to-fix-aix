@@ -141,7 +141,7 @@
 
 //================================
 .form-btn{
-    margin-bottom: 2rem ;
+    margin: 0 auto  !important;
     cursor: pointer;
     // font-weight: bolder;
     padding: 0.5rem;
@@ -150,23 +150,35 @@
     border: var(--main-2-blue) 2px solid !important;
     background: transparent !important;
     color:  var(--main-2-blue)!important;
+    // margin: auto ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     &:hover {
         background: var(--main-2-blue) !important;
         color: white!important;
     }
-    display: flex;
-    justify-content: center;
-    align-items: center;
     &:disabled ,
     &:disabled:hover {
         // box-shadow: none;
         cursor: not-allowed !important;
         background: #9a888861 !important;
+        border:#9a888861 2px solid !important;
         color:  var(--main-2-blue)  !important;
-        border: #fff 3px solid !important;
+        // border: #fff 3px solid !important;
         // box-shadow: -10px -10px 15px rgba(0, 0, 0, 0.185) ,inset  3px 3px 18px rgba(0, 0, 0, 0.159);
         @extend %tran ;
         @extend %animat ;
+    }
+    &.actions__{
+        max-width: 45% !important;
+        @include small_mobile {
+            max-width: 100% !important;
+        }
+        @include medium_mobile {
+            max-width: 100% !important;
+        } 
+
     }
 }
 //========================================
@@ -200,13 +212,13 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
             width: 100%;
             padding: 0.5rem;
-            gap: 0.15rem;
+            gap: 1rem !important;
             // margin: auto;
             width: 100%;
-            grid-column: 1/3 ;
+            // grid-column: auto auto ;           
             .actionsBox{
                 display: flex;
                 width: 100%;
@@ -215,7 +227,7 @@
                 justify-content: flex-start;
                 P,a{
                     width: 50% !important;
-                    margin-top: 30px ;
+                    // margin-top: 30px ;
                     text-align: left ;
                 }
                 a{
@@ -223,10 +235,10 @@
                     &:hover {
                         color: var(--main-2-blue) !important;
                     }
-                    margin-top:  5px ;
+                    // margin-top:  5px ;
                 }
                 a.forgotPassword{
-                    margin-top:  -30px ;
+                    // margin-top:  -30px ;
                     text-decoration: none !important;
                 }
                 @include small_mobile {
@@ -335,6 +347,9 @@
         font-size: 12px;
         color: #ef9a9a;
         margin-top: 1px;
+    }
+    p{
+        margin-bottom: .3rem;
     }
 }
 //------------------
@@ -454,7 +469,7 @@ select{
     background: var(--cultured);
     height: .5rem;
     //border: var(--main-2-blue) 2px solid;
-    margin-bottom: 2rem;
+    margin-bottom: .8rem;
     border-radius: 18px;
     -webkit-border-radius: 18px;
     -moz-border-radius: 18px;
@@ -501,6 +516,7 @@ select{
         a,button {
             width: 95% !important;
             margin: auto !important;
+            max-width: 95% !important;
         }
     }
     @include medium_mobile {
@@ -510,6 +526,100 @@ select{
         a,button {
             width: 95% !important;
             margin: auto !important;
+            max-width: 95% !important;
+
         }
     } 
+}
+
+.__otp__con__1{
+    width: 100%;
+    padding-top: 11px;
+    margin-top: 10px;
+    border-top: var(--cultured) 2px solid !important;
+    display: flex;
+    flex-direction: column;
+    .__otp__con{
+
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        span{
+            width: calc(95% / 3) !important;
+            // margin-bottom: 2rem ;
+            cursor: pointer;
+            // font-weight: bolder;
+            padding: 0.5rem;
+            @extend %rad15 ;
+            @extend %tran ;
+            border: var(--main-2-blue) 2px solid !important;
+            background: transparent !important;
+            color:  var(--main-2-blue)!important;
+            &:hover {
+                background: var(--main-2-blue) !important;
+                color: white!important;
+            }
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &:disabled ,
+            &:disabled:hover {
+                // box-shadow: none;
+                cursor: not-allowed !important;
+                background: #9a888861 !important;
+                color:  var(--main-2-blue)  !important;
+                border: #fff 3px solid !important;
+                @extend %tran ;
+                @extend %animat ;
+            }
+        }
+        input{
+            width: calc(95% / 3) !important;
+        }
+        @include small_mobile {
+            flex-direction: column !important;
+            width: 100%!important;
+            gap: 1rem !important;
+            span,input {
+                width: 95% !important;
+                margin: auto !important;
+            }
+        }
+        @include medium_mobile {
+            flex-direction: column !important;
+            width: 100%!important;
+            gap: 1rem !important;
+            span,input {
+                width: 95% !important;
+                margin: auto !important;
+            }
+        } 
+    }
+    p.otp-text{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 4px;
+        padding: 2px 4px;
+        font-size: 17px;
+        font-style: italic;
+        font-weight: 700;
+        text-align: left;
+        color: var(--ocean-green);
+        &.otp-text-error{
+            color: #ef9a9a;
+        }
+    }
+}
+
+
+.form-btn-con {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    flex-direction: column;
+    div {
+        width: 100%;
+    }
 }

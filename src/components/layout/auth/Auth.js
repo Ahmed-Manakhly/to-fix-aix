@@ -5,6 +5,7 @@ import LoginForm from './LoginForm' ;
 import SignupFormStep1 from './SignupFormStep1' ;
 import SignupFormStep2 from './SignupFormStep2' ;
 import AccountRoleForm from './AccountRoleForm' ;
+import ForgotPassword from './ForgotPassword' ;
 import logo from '../../../assets/LOGO_3.png'
 import { useState} from 'react' ;
 import { Row , Col  } from 'react-bootstrap' 
@@ -32,6 +33,7 @@ const Auth = ( ) => {
     const [SearchParams]=useSearchParams() ;
     const isLogin = SearchParams.get('mode') === 'login' ;
     const isSignup = SearchParams.get('mode') === 'signup' ;
+    const isForgotPassword = SearchParams.get('mode') === 'forgotPassword' ;
     const roleClient = SearchParams.get('role') === 'client' ;
     const roleDev = SearchParams.get('role') === 'developer' ;
     const step_1 = SearchParams.get('step') === '1' ;
@@ -82,7 +84,7 @@ const Auth = ( ) => {
 
                 <Col  className={`${classes["contact-col"]} flex-fill`}>
                     <AuthCard title={isLogin ? "Sign in to your account" : isSignup ? "Create a new account" : ''}/>
-                    {!isLogin &&                     
+                    {(!isLogin && !isForgotPassword )&&                     
                     <Row className={'d-flex flex-column justify-content-center ms-lg-5 me-lg-5 ps-lg-5 pe-lg-5'}>
                         <div className={`${classes['progressLineOut']}`}>
                             <div className={`${classes['progressLineIn']}`} style={{width : `${innerWidth}`}}>
@@ -94,6 +96,7 @@ const Auth = ( ) => {
                     <Form method="post"  className={classes.container__3}>
                         {isLogin &&  <LoginForm/>}
                         {isSignup && <AccountRoleForm/>}
+                        {isForgotPassword && <ForgotPassword/>}
                         {((roleClient || roleDev) &&step_1)&& <SignupFormStep1 onStepData={onStepData}/> }
                         {((roleClient || roleDev) &&step_2)&& <SignupFormStep2 stepData={stepData}/> }
                     </Form>

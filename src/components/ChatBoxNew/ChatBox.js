@@ -37,9 +37,9 @@ const ChatBox = ({ chat,currentUserRole, messages  ,currentUser ,onHandleSend , 
     const getUserData = async () => {
       try {
         const { data } = await getUser(userId , token);
-        setUserData(data.data.user);
+        setUserData(data?.data?.user);
       } catch (error) {
-        console.log(error);
+        console.log(error?.respons?.data?.message);
       }
     };
 

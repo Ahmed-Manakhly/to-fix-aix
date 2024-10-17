@@ -22,14 +22,14 @@ const Conversation = ({ data, online ,currentUserRole , onRemove , to}) => {
       try
       {
           const {data} =await getUser(userId , token)
-          setUserData(data.data.user)
+          setUserData(data?.data?.user)
       }
       catch(error)
       {
-        console.log(error)
+        console.log(error?.respons?.data?.message);
       }
     }
-    getUserData();
+    token && getUserData();
   }, [data , currentUserRole , token])
   //=====================================================================================================================
   return (

@@ -5,7 +5,10 @@ import { PhoneNumberUtil } from 'google-libphonenumber';
 import { useNavigation , Link ,useSearchParams} from 'react-router-dom';
 import classes from './Auth.module.scss' ;
 import { Row , Col  } from 'react-bootstrap' 
-import { useState} from 'react' ;
+import { useState , useEffect } from 'react' ;
+import { createOtp , validateOtp } from "../../../lib/authRequests";
+import { IoMdCheckmarkCircle } from "react-icons/io";
+
 
 const phoneUtil = PhoneNumberUtil.getInstance();
 const isPhoneValid = (phone) => {
@@ -25,19 +28,73 @@ const SignupFormStep2 = ( {stepData}) => {
     const [isTouched, setIsTouched] = useState(false);
     const phoneIsValid = isPhoneValid(phone);
     const phoneIsInValid = !phoneIsValid && isTouched
+    //-----------------------------------------------
+    const [verified, setVerified] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [rest, setRest] = useState(false);
+    const [otpMessage, setOtpMessage] = useState({content : '' , error : false});
     //------------------------------------ init validation
     const {hasError : orgNameInputIsInvalid , valueIsValid : orgName,
         valueChangeHandler : orgnameInputChangeHandler , inputBlurHandler : orgnameInputBlurHandler } = useInput(value => value.trim() !=='') ;
+    const {hasError : OTPInputIsInvalid ,value : theOtp ,
+        valueChangeHandler : OTPInputChangeHandler , inputBlurHandler : OTPInputBlurHandler } = useInput(value => value.trim() !=='') ;
     //-----------------------------------
     const navigation = useNavigation() ;
     const isSubmitting = navigation.state === 'submitting' ;
     //------------------------------------------------------form valid
     let formIsValid = false
-    if(orgName && phoneIsValid){
+    if(orgName && phoneIsValid && verified){
         formIsValid = true;
     }
     const orgName1Classes = orgNameInputIsInvalid? `${classes["form-control"]} ${classes.invalid}` : `${classes["form-control"]}` ;
+    const OTPClasses = OTPInputIsInvalid? `${classes["form-control"]} ${classes.invalid}` : `${classes["form-control"]}` ;
     const phoneClasses = phoneIsInValid? `${classes["form-control"]} ${classes.invalid}` : `${classes["form-control"]}` ;
+    //-----------------------
+    const gettingOtp = async ()=> {
+        setIsLoading(true)
+        try{
+            const {data} =await createOtp({email : stepData?.enteredEmail})
+            setOtpMessage(prev => ({...prev , content : data?.data?.message , error : false}))
+            setRest(true)
+            setIsLoading(false)
+        }catch(error)
+        {   
+            setOtpMessage(prev => ({...prev , content : error?.response?.data.data.message , error : true}))
+            setRest(true)
+            setIsLoading(false)
+        }
+    }
+    //-----------------
+    const verifingOtp = async ()=> {
+        setIsLoading(true)
+        try{
+            const {data} =await validateOtp({email : stepData?.enteredEmail , otp : theOtp})
+            setOtpMessage(prev => ({...prev , content : data?.data?.message , error : false}))
+            setVerified(true)
+            setRest(true)
+            setIsLoading(false)
+            // if( data?.data?.message === "Email verified successfully!"){
+            // }
+        }catch(error)
+        {
+            setOtpMessage(prev => ({...prev , content : error?.response?.data.data.message , error : true}))
+            setRest(true)
+            setIsLoading(false)
+        }
+    }
+    //rest
+    useEffect(() => {
+        if(rest){
+            setRest(false)
+            if(otpMessage.content !== "Email verified successfully!" ){
+                setVerified(false)
+            }else{
+                setTimeout(()=>{
+                    setVerified(false)
+                },120000)
+            }
+        }
+    },[rest , otpMessage.content])
     //-----------------------
     return (
         <Col className={`d-flex flex-column justify-content-center  p-lg-4 align-items-center`}>
@@ -69,9 +126,24 @@ const SignupFormStep2 = ( {stepData}) => {
                 onChange={orgnameInputChangeHandler} onBlur={orgnameInputBlurHandler} value={country.name||''}/>
             </Row>
             {/* {===================================} */}
-            <Row className={`${classes["actions"]} d-flex  align-items-center w-100 m-0`}>
-                <Link to={`?role=${role}&step=1`} className={`${classes['form-btn']} d-flex flex-column align-items-left w-50`}>Previous</Link>
-                <button type="submit"  disabled={!formIsValid} className={`${classes['form-btn']} d-flex flex-column align-items-left w-50`} >  {isSubmitting? 'Submitting...' : "Sign Up"} </button>
+            <div className={`${OTPClasses} ${classes['__otp__con__1']}`} >
+                <div className={`${OTPClasses} ${classes['__otp__con']}`} >
+                    <span  onClick={gettingOtp}>Get OTP</span>
+                    <input type="text"  placeholder="OTP is required" id='otp' required
+                    onChange={OTPInputChangeHandler} onBlur={OTPInputBlurHandler} name="org_name"/>
+                    <span onClick={verifingOtp} >Verify Your Email</span>
+                </div>
+                {isLoading && <p>Please Wait...</p>}
+                {otpMessage.content !== '' && <p className={`
+                    ${classes['otp-text']} ${otpMessage.error && classes['otp-text-error']}    
+                `} >{!otpMessage.error && <IoMdCheckmarkCircle/>}{otpMessage.content}</p>}
+            </div>
+            {/* {===================================} */}
+            <Row className={`${classes["actions"]}  d-flex  align-items-center w-100 m-0`}>
+                <Link to={`?role=${role}&step=1`} className={`${classes['form-btn']} ${classes["actions__"]}  d-flex flex-column align-items-left w-50`}>Previous</Link>
+                <button type="submit"  disabled={!formIsValid} className={`${classes['form-btn']} ${classes["actions__"]}  d-flex flex-column align-items-left w-50`} >
+                    {isSubmitting? 'Submitting...' : "Sign Up"}
+                </button>
             </Row>
         </Col>
     )

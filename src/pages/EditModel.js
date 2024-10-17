@@ -36,8 +36,8 @@ function EditModel() {
     },[authority,token])
     const dispatch = useDispatch();  
     const [model,setModel] = useState([]) ;
-    const [subscriptionInit,setSubscriptionInit] = useState() ;
-    const [payPerClickInit,setPayPerClickInit] = useState() ;
+    const [subscriptionInit,setSubscriptionInit] = useState(true) ;
+    const [payPerClickInit,setPayPerClickInit] = useState(false) ;
     const { id } = useParams();
     //------------------------------------------------
     useEffect(() => {
@@ -53,8 +53,8 @@ function EditModel() {
         }
         const gettingData =(data)=>{
             setModel(data?data:null)
-            setSubscriptionInit(data? (+data.subscription === 1? true : false) : null)
-            setPayPerClickInit(data? (+data.payPerClick === 1? true : false) : null)
+            setSubscriptionInit(data? (+data?.subscription === 1? true : false) : true)
+            setPayPerClickInit(data? (+data?.payPerClick === 1? true : false) : false)
         }
         getModel(ALL_MODELS_URL+'/'+id, toastHandler , loadingState , notificationState , gettingData,'model!' )
         dispatch(uiActions.showNotification(false))
@@ -97,7 +97,7 @@ function EditModel() {
         <>
             <Header 
                 txt_1='The AiExchange'
-                txt_2=' Getting New Ideas to Improve Your project is always amazing'
+                txt_2=' Getting New Ideas is always amazing'
                 txt_3=' Share your insights, Together, we’re shaping the future of AI in healthcare.'
                 banner={banner}
             />

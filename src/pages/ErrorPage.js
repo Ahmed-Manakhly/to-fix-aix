@@ -70,7 +70,7 @@ const ErrorPage = ({msgCounter , notCounter , notifys , handleDeleteNotification
     //----------------------------------------
     const dispatch = useDispatch();   
     //----------------------------------------
-    let token = useLoaderData() ;
+    let token = getAuthToken() ;
 
     useEffect(()=>{
         if(timeExtanded){

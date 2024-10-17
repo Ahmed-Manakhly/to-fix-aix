@@ -12,7 +12,7 @@ import imgHolder from '../assets/imgHolder.jpg'
 import {origin} from '../lib/api' 
 
 
-const   FormActions = ({ thisModel=null , formTitle ,onCreatingModelAction ,payPerClickInit=null ,subscriptionInit=null} ) => {
+const   FormActions = ({ thisModel=null , formTitle ,onCreatingModelAction ,payPerClickInit=false ,subscriptionInit=true} ) => {
     const authority =  JSON.parse(localStorage.getItem('userData'))?.id 
     const [file,setFile] = useState() 
     const [payPerClick,setPayPerClick] = useState(false ) 

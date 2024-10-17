@@ -121,7 +121,7 @@ const ChatNew = ({msg , onlineUsers , onFeatchChats ,notify , onFeatchNotificati
           const { data } = await userChats(user.id);
           setChats(data?.data?.chats);
         } catch (error) {
-          console.log(error);
+          console.log(error?.respons?.data?.message) ;
         }
       };
       getChats();
@@ -136,7 +136,7 @@ const ChatNew = ({msg , onlineUsers , onFeatchChats ,notify , onFeatchNotificati
           const { data } = await userNotifications(user.id);
           setNotifications(data?.data);
         } catch (error) {
-          console.log(error);
+          console.log(error?.respons?.data?.message) ;
         }
       };
       getNotifications();
@@ -179,7 +179,7 @@ const ChatNew = ({msg , onlineUsers , onFeatchChats ,notify , onFeatchNotificati
             setMessages(data?.data?.messages);
             onFeatchChats(true)
           } catch (error) {
-            console.log(error);
+            console.log(error?.respons?.data?.message) ;
           }
         }
         gettingMsg()
@@ -201,7 +201,7 @@ const ChatNew = ({msg , onlineUsers , onFeatchChats ,notify , onFeatchNotificati
       setNotificationsUpdated(true)
       onFeatchNotifications(true)
     }catch(err){
-      console.log(err)
+      console.log(err?.respons?.data?.message);
     }
   }
   //-------------------------------------
@@ -211,7 +211,7 @@ const ChatNew = ({msg , onlineUsers , onFeatchChats ,notify , onFeatchNotificati
       setNotificationsUpdated(true)
       onFeatchNotifications(true)
     }catch(err){
-      console.log(err)
+      console.log(err?.respons?.data?.message);
     }
   }
   //-------------------------------------
@@ -223,7 +223,7 @@ const ChatNew = ({msg , onlineUsers , onFeatchChats ,notify , onFeatchNotificati
       setCurrentChat(null)
       onFeatchChats(true)
     }catch(err){
-      console.log(err)
+      console.log(err?.respons?.data?.message);
     }
     closeModal();
   }
@@ -242,7 +242,7 @@ const ChatNew = ({msg , onlineUsers , onFeatchChats ,notify , onFeatchNotificati
       const sendAndCreate = async ()=>{
         try {
           const { data } = await createChat({clientId:user.id ,developerId: +contact});
-          const newChat = data.data.clientCopy ;
+          const newChat = data?.data?.clientCopy ;
           const message = {
             userId : user.id,
             desc: msg,
@@ -257,7 +257,7 @@ const ChatNew = ({msg , onlineUsers , onFeatchChats ,notify , onFeatchNotificati
           socket.emit("msg_created", {message, forId:newChat.developerId});
         }
         catch(err){
-          console.log(err)
+          console.log(err?.respons?.data?.message);
         }
       }
       sendAndCreate()
@@ -284,7 +284,7 @@ const ChatNew = ({msg , onlineUsers , onFeatchChats ,notify , onFeatchNotificati
           socket.emit("msg_created", {message, forId});
         }
         catch(err){
-          console.log(err)
+          console.log(err.respons.data.message);
         }
       }
       sendMsg()

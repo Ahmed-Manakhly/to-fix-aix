@@ -38,7 +38,7 @@ export async function LoginAction (request , actions , toastHandler , loadingSta
             toastHandler(toast);
         }
         //------------------------------------
-    }else{
+    }else if((mode === 'signup')){
         loadingState(true)
         const authData = {
             email: data.get('email'),
